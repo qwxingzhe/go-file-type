@@ -3,6 +3,9 @@
 [![Build Status](https://travis-ci.org/qwxingzhe/go-file-type.svg)](https://travis-ci.org/qwxingzhe/go-file-type)
 [![GitHub release](http://img.shields.io/github/release/qwxingzhe/go-file-type.svg?style=flat-square)](release)
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](license)
+[![Commit activity](https://img.shields.io/github/commit-activity/m/qwxingzhe/go-file-type)](https://github.com/qwxingzhe/go-file-type/graphs/commit-activity)
+[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/qwxingzhe/go-file-type.svg)](http://isitmaintained.com/project/qwxingzhe/go-file-type "Average time to resolve an issue")
+[![Percentage of issues still open](http://isitmaintained.com/badge/open/qwxingzhe/go-file-type.svg)](http://isitmaintained.com/project/qwxingzhe/go-file-type "Percentage of issues still open")
 
 
 
