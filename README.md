@@ -53,7 +53,7 @@ GetFileTypeByUrl("http://img.gif.cn/temp_makegif/20210806/1628230128817044.gif")
 
 # 参照
 
-- [[Go语言 通过文件流判断文件头来识别文件类型](https://www.cnblogs.com/enjong/articles/10741244.html)](https://www.cnblogs.com/enjong/articles/10741244.html)
+- [Go语言 通过文件流判断文件头来识别文件类型](https://www.cnblogs.com/enjong/articles/10741244.html)
 
 # License
 
