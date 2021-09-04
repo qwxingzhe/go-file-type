@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"bytes"
 	"encoding/hex"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -93,16 +92,11 @@ func bytesToHexString(src []byte) string {
 	return res.String()
 }
 
-// GetFileType 用文件前面几个字节来判断
+// GetFileTypeByByte 用文件前面几个字节来判断
 // fSrc: 文件字节流（就用前面几个字节）
-func GetFileType(fSrc []byte) string {
+func GetFileTypeByByte(fSrc []byte) string {
 	var fileType string
 	fileCode := bytesToHexString(fSrc)
-
-	//fmt.Println("1 |----------------------------------------------->>>>>>>>>>")
-	//fmt.Println(fSrc)
-	fmt.Println("--------------| ", fileCode)
-	//fmt.Println("2 |----------------------------------------------->>>>>>>>>>")
 
 	fileTypeMap.Range(func(key, value interface{}) bool {
 		k := key.(string)
@@ -117,8 +111,8 @@ func GetFileType(fSrc []byte) string {
 	return fileType
 }
 
-// GetFileTypeByPath 通过本地文件路径获取
-func GetFileTypeByPath(filePath string) string {
+// GetFileTypeByLocalPath 通过本地文件路径获取
+func GetFileTypeByLocalPath(filePath string) string {
 	f, err := os.Open(filePath)
 	if err != nil {
 		panic(err)
@@ -128,7 +122,7 @@ func GetFileTypeByPath(filePath string) string {
 	if err != nil {
 		panic(err)
 	}
-	return GetFileType(fSrc[:10])
+	return GetFileTypeByByte(fSrc[:10])
 }
 
 // GetFileTypeByUrl 通过URL获取
@@ -146,5 +140,5 @@ func GetFileTypeByUrl(fileUrl string) string {
 	if len < 0 || err != nil {
 		return ""
 	}
-	return GetFileType(bytes)
+	return GetFileTypeByByte(bytes)
 }

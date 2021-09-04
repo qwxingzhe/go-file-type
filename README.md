@@ -16,34 +16,43 @@
 # 安装
 
 ```shell
-$ go get -u github.com/qwxingzhe/go-file-type
+go get -u github.com/qwxingzhe/go-file-type
 ```
 
 # 使用指南
 
+通过网络文件地址获取扩展名
+
+~~~
+package main
+
+import (
+	"fmt"
+	gofiletype "github.com/qwxingzhe/go-file-type"
+)
+
+func main() {
+	fileType := gofiletype.GetFileTypeByUrl("http://img.gif.cn/temp_makegif/20210806/1628230128817044.gif")
+	fmt.Println(fileType)
+}
+~~~
+
 通过文件前面几个字节来判断
 
 ~~~
-f, err := os.Open("./testfile/0010.gif")
-if err != nil {
-    t.Logf("open error: %v", err)
-}
-
-fSrc, err := ioutil.ReadAll(f)
-t.Log(GetFileType(fSrc[:10]))
+f, _ := os.Open("./testfile/0010.gif")
+fSrc, _ := ioutil.ReadAll(f)
+fileType := gofiletype.GetFileTypeByByte(fSrc[:10])
+fmt.Println(fileType)
 ~~~
 
 通过本地文件路径获取扩展名
 
-~~~
-GetFileTypeByPath("./testfile/0010.gif")
+~~~ 
+fileType := gofiletype.GetFileTypeByLocalPath("./testfile/0010.gif")
+fmt.Println(fileType)
 ~~~
 
-通过网络文件地址获取扩展名
-
-~~~
-GetFileTypeByUrl("http://img.gif.cn/temp_makegif/20210806/1628230128817044.gif")
-~~~
 
 ## 测试用例
 

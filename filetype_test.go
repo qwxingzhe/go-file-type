@@ -1,7 +1,8 @@
 package go_file_type
 
 import (
-	"fmt"
+	"io/ioutil"
+	"os"
 	"testing"
 )
 
@@ -19,10 +20,20 @@ var loacltests = []PathTest{
 	//{"./testfile/0042.webp","webp"},
 }
 
-func TestUnit_GetFileTypeByPath(t *testing.T) {
+func TestUnit_GetFileTypeByByte(t *testing.T) {
 	for _, test := range loacltests {
-		fmt.Println(test.path)
-		if s := GetFileTypeByPath(test.path); s != test.result {
+		f, _ := os.Open(test.path)
+		fSrc, _ := ioutil.ReadAll(f)
+		if s := GetFileTypeByByte(fSrc[:10]); s != test.result {
+			t.Errorf("GetFileTypeByByte(%q) = %q, want %q", test.path, s, test.result)
+		}
+	}
+
+}
+
+func TestUnit_GetFileTypeByLocalPath(t *testing.T) {
+	for _, test := range loacltests {
+		if s := GetFileTypeByLocalPath(test.path); s != test.result {
 			t.Errorf("GetFileTypeByPath(%q) = %q, want %q", test.path, s, test.result)
 		}
 	}
@@ -34,7 +45,6 @@ var urltests = []PathTest{
 
 func TestUnit_GetFileTypeByUrl(t *testing.T) {
 	for _, test := range urltests {
-		fmt.Println(test.path)
 		if s := GetFileTypeByUrl(test.path); s != test.result {
 			t.Errorf("GetFileTypeByUrl(%q) = %q, want %q", test.path, s, test.result)
 		}
